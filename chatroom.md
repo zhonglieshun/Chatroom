@@ -5,16 +5,16 @@
 Database封装了MySql数据库处理函数，为Server提供数据库接口。
 Server建立TCP监听接口、使用epoll实现了I/O多路复用、创建了固定数量的子线程处理客户端请求、使用主线程处理用户连接并通过条件变量调度子线程。
 ## 1.3 Database类成员函数：
-void connect_database(string host,int user,string password)　　　　............连接指定数据库  
-sring query_password(int user_id)　　　　　　　　　　　　　　　　　　　...........查询用户登陆密码  
-User_condition query_condition(int user_id)　　　　　　　　　　　　　............查询用户登陆状态、IP、端口  
-int user_sign(string password)　　　　　　　　　　　　　　　　　　　　　...........用户注册  
-bool user_update(int user_id,string host,int port,int online)　　　............更新用户状态
+void connect_database(string host,int user,string password).......**连接指定数据库**  
+sring query_password(int user_id).......**查询用户登陆密码**  
+User_condition query_condition(int user_id).......**查询用户登陆状态、IP、端口**  
+int user_sign(string password).......**用户注册**  
+bool user_update(int user_id,string host,int port,int online).......**更新用户状态**
 ## 1.4 Server成员函数：
-Server()　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　............建立监听端口、初始化成员变量  
-void run()　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　............处理用户连接、线程调度
+Server().......**建立监听端口、初始化成员变量 ** 
+void run().......**处理用户连接、线程调度**
 ## 1.5 子线程函数：
-void* thread(void* arg)　　　　　　　　　　　　　　　　　　　　　　　　............逻辑函数，处理用户请求，通过pthread_cond_wait()阻塞等待调用
+void* thread(void* arg).......**逻辑函数，处理用户请求，通过pthread_cond_wait()阻塞等待调用**
 # 2、问题
 1. Server的封装性：由于规划时想将所有处理用户请求的功能封装在Server类中，将子线程主函数作为了Server的成员函数。所以不得已将该函数改为普通函数并将Server类的所有成员变量改为
 public，将Database改为public继承。　　
