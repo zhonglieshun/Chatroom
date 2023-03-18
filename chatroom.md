@@ -2,7 +2,7 @@
      ##1.1 定义类：服务器端分别定义了数据库类（class Database)和客户端请求处理类（class Server)；Database作为基类，由Server公有继承。
      ##1.2 类功能：Database封装了MySql数据库处理函数，为Server提供数据库接口。
                 Server建立TCP监听接口、使用epoll实现了I/O多路复用、创建了固定数量的子线程处理客户端请求、使用主线程处理用户连接并通过条件变量调度子线程。
-     ##1.3 Database类成员函数：
+     1.3 Database类成员函数：
                void connect_database(string host,int user,string password)        ............连接指定数据库
                sring query_password(int user_id)                                  ............查询用户登陆密码
                User_condition query_condition(int user_id)                        ............查询用户登陆状态、IP、端口
